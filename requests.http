@@ -1,0 +1,62 @@
+POST http://localhost:8081/orders
+Content-Type: application/json
+
+{
+  "id": 103,
+  "productName": "Keyboard",
+  "quantity": 2,
+  "price": 45.0
+}
+###
+DELETE http://localhost:8081/orders/103
+###
+PUT http://localhost:8081/orders/103
+Content-Type: application/json
+
+{
+  "id": 103,
+  "productName": "Keyboard",
+  "quantity": 5,
+  "price": 45.0
+}
+###
+GET http://localhost:8081/orders/103
+###
+POST http://localhost:8081/orders
+Content-Type: application/json
+
+{
+  "productName": "Laptop",
+  "quantity": 2,
+  "price": 750.0
+}
+###
+GET http://localhost:8081/orders
+###
+GET http://localhost:8081/orders/1
+###
+GET http://localhost:8081/orders/2
+###
+GET http://localhost:8081/orders/3
+###
+GET http://localhost:8081/orders/999
+###
+POST http://localhost:8081/orders
+Content-Type: application/json
+
+{
+  "productName": "Keyboard",
+  "quantity": 3,
+  "price": 50.0
+}
+###
+PUT http://localhost:8081/orders/3
+Content-Type: application/json
+
+{
+  "productName": "Keyboard",
+  "quantity": 3,
+  "price": 75.0
+}
+###
+DELETE http://localhost:8081/orders/3
