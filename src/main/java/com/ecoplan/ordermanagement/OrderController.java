@@ -1,15 +1,10 @@
 package com.ecoplan.ordermanagement;
-import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.http.ResponseEntity;
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import java.util.List;
+
 @RestController
 public class OrderController {
 
@@ -27,29 +22,29 @@ public class OrderController {
         return orderService.getAllOrders();
     }
     @PostMapping("/orders")
-    public Order createOrder(@RequestBody Order order) {
+    public Order createOrder(@Valid @RequestBody Order order) {
 
         return orderService.createOrder(order);
     }
     @DeleteMapping("/orders/{id}")
-    public String deleteOrder(@PathVariable int id) {
+    public ResponseEntity<String> deleteOrder(@PathVariable int id) {
 
         if (orderService.deleteOrder(id)) {
-            return "Order deleted successfully!";
+            return ResponseEntity.ok("Order deleted successfully!") ;
         }
 
-        return "Order not found!";
+        return ResponseEntity.status(404).body("Order not found!");
     }
     @PutMapping("/orders/{id}")
-    public String updateOrder(
+    public ResponseEntity<String> updateOrder(
             @PathVariable int id,
             @RequestBody Order updatedOrder) {
 
         if (orderService.updateOrder(id, updatedOrder)) {
-            return "Order updated successfully!";
+            return ResponseEntity.ok("Order updated successfully!");
         }
 
-        return "Order not found!";
+        return ResponseEntity.status(404).body("Order not found!");
     }
 
     @GetMapping("/orders/{id}")
